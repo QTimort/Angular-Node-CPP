@@ -5,11 +5,8 @@
 // native C++ function that is assigned to 'entryPoint' property on 'exports' object 
 Napi::ArrayBuffer entryPoint(const Napi::CallbackInfo &info) {
     Napi::Env env = info.Env();
-	std::pair<void *, size_t> result = EntryPoint(0, {}); // returns void for now
+	std::pair<void *, size_t> result = EntryPoint(0, {});
 	// todo free result.first ?
-    //std::string result = "";
-    // return new 'Napi::String' value 
-    //return Napi::String::New(env, result);
 	return Napi::ArrayBuffer::New(env, result.first, result.second);
 }
 
@@ -25,5 +22,5 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
     return exports;
 }
 
-// register 'greet' module whIch calls Init' method
+// register 'entryPoint' module which calls the Init method
 NODE_API_MODULE(entryPoint, Init)

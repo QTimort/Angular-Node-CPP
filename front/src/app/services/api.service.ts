@@ -11,12 +11,8 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getNews(){
-    return this.httpClient.get(environment.apiUrl + `users/all`);
-  }
-
   public getScreenshot() {
-    return this.httpClient.get(environment.apiUrl + `users/screen`);
+    return this.httpClient.get(environment.apiUrl + `entryPoint/screen`);
   }
 
 }
