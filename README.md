@@ -12,5 +12,5 @@ Folder | Description
 ------------ | -------------
 back | Simple NodeJS backend with ExpressJS
 front | Simple Front-End using AngularJS
-native-node-module | The fun part of the project, it contains some c++ sources which gets compiled using node-gyp and can then by used in a typical node script.
+native-node-module | The fun part of the project, it contains some c++ sources which gets compiled using node-gyp and can then be used in a typical node script.
 cpp | Contains c++ sources that can be compiled into a library which can be loaded dynamically in an executable. This folder is not required for this PoC but is nice to have to test the library.
