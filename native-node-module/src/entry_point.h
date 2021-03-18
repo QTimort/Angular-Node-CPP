@@ -7,6 +7,6 @@
 
 #define EXPORT comment(linker, "/EXPORT:" __FUNCTION__ "=" __FUNCDNAME__)
 
-void EntryPoint(int argc, const char * argv);
+std::pair<void *, size_t> EntryPoint(int argc, const char * argv);
 
 #endif //CPP_ENTRY_POINT_H

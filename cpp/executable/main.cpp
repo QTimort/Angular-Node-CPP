@@ -15,12 +15,12 @@ int main() {
         std::cout << "LoadMe library failed to load!" << std::endl;
 
     // declare the function signature to load and call
-    typedef void (*EntryPointfuncPtr)(int argc, const char * argv );
+    typedef std::pair<void *, size_t> (*EntryPointfuncPtr)(int argc, const char * argv );
     // load the function from the library by it's name
     auto LibMainEntryPoint = (EntryPointfuncPtr)GetProcAddress(LoadME,"EntryPoint");
     if (LibMainEntryPoint != nullptr) {
         std::cout << "Found function!" << std::endl;
-        LibMainEntryPoint(0, {});
+        const std::pair<void *, size_t> &pair = LibMainEntryPoint(0, {});
     } else {
         std::cout << "Function not found!" << std::endl;
     }

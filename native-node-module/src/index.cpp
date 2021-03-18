@@ -3,12 +3,14 @@
 #include "entry_point.h"
 
 // native C++ function that is assigned to 'entryPoint' property on 'exports' object 
-Napi::String entryPoint(const Napi::CallbackInfo &info) {
+Napi::ArrayBuffer entryPoint(const Napi::CallbackInfo &info) {
     Napi::Env env = info.Env();
-	EntryPoint(0, {}); // returns void for now
-    std::string result = "";
+	std::pair<void *, size_t> result = EntryPoint(0, {}); // returns void for now
+	// todo free result.first ?
+    //std::string result = "";
     // return new 'Napi::String' value 
-    return Napi::String::New(env, result);
+    //return Napi::String::New(env, result);
+	return Napi::ArrayBuffer::New(env, result.first, result.second);
 }
 
 // callback method when module is registered with Node.js

@@ -1,8 +1,13 @@
 import StatusCodes from 'http-status-codes';
 import { Request, Response, Router } from 'express';
+import * as fs from 'fs'
+import * as stream from 'stream'
 
 import UserDao from '@daos/User/UserDao.mock';
 import { paramMissingError, IRequest } from '@shared/constants';
+import {Readable} from "stream";
+const entryPoint = require('./entry_point.node');
+
 
 const router = Router();
 const userDao = new UserDao();
@@ -19,6 +24,28 @@ router.get('/all', async (req: Request, res: Response) => {
     const users = await userDao.getAll();
     return res.status(OK).json({users});
 });
+
+function bufferToStream(buffer: ArrayBuffer) {
+    const stream = new Readable();
+    stream.push(buffer);
+    stream.push(null);
+
+    return stream;
+}
+
+router.get('/screen', async (req: Request, res: Response) => {
+    console.log('screen');
+
+
+    const buffer: ArrayBuffer = entryPoint.entryPoint(0, []);
+    const img = Buffer.from(buffer).toString('base64');
+    res.set("Content-Type", "image/bmp");
+    // todo find a proper way to send an image from a buffer
+    return res.status(OK).json({
+      Image: img
+    });
+});
+
 
 
 
