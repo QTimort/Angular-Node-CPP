@@ -7,7 +7,7 @@
 
 int main() {
     // Load the specified library. Use AfxLoadLibrary if the library uses threads
-    HINSTANCE LoadME = LoadLibrary(R"(cpp.dll)");
+    HINSTANCE LoadME = LoadLibrary(R"(library.dll)");
 
     if (LoadME != nullptr)
         std::cout << "LoadMe library loaded!" << std::endl;
